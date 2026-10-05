@@ -141,36 +141,43 @@ Turn the extraction into **one file**: `ANALYSIS.md` (template:
 > From `ANALYSIS.md`, write **exactly two** asset prompts, as **two separate
 > files**. One is for **visual assets**. One is for **sound**. Nothing else.
 
-### 4.1 `ASSETS-VISUAL.md` — the visual-asset prompt
-A ready-to-paste prompt for an AI with **image generation**. It requests:
-- **images** (backgrounds, textures, plates, illustrations, icons),
-- **transparent images** (PNG/alpha — logos, cut-out characters, caption PNGs),
-- **logos** (wordmark + mark, in the reference's palette),
-- optionally any **still elements** the reference needs.
+### 4.0 THE DEPTH LAW — each file IS a prompt, at full depth
+Write each file so it can be handed **straight to a generator** with no
+rewriting. It **opens with the role + the task**, gives a **deliverable tree**
+(one zip containing multiple zips inside), numbers every asset with its own
+**executable brief** carrying **exact values** (hex, px, durations, BPM, cue
+times, filenames), and **ends with acceptance checks**.
 
-Each item: what it is, size/aspect, palette (hex from the analysis), style
-keywords, and "transparent background" where needed.
+> A thin list of names is **wrong**. Match the depth of the worked examples:
+> `examples/EXAMPLE-ASSETS-VISUAL.md` and `examples/EXAMPLE-ASSETS-SOUND.md`.
+> If your file is much shorter than those, it is under-specified.
+
+### 4.1 `ASSETS-VISUAL.md` — the visual-asset prompt
+A ready-to-paste prompt for an AI with **image generation**. Three sections:
+- **images** — backgrounds, textures, plates, illustrations, charts,
+- **transparent images** — PNG/alpha cut-outs, icons, caption PNGs,
+- **logos** — wordmark + mark (supplied or a brief; never a real brand's mark).
+
+Deliverable: **`visual-assets.zip`** holding `MANIFEST.md`, `images.zip`,
+`transparent.zip`, `logos.zip`.
 
 ### 4.2 `ASSETS-SOUND.md` — the sound prompt
-A ready-to-paste prompt for an AI with **audio generation**. It requests:
-- **music** (mood, tempo/BPM, instrumentation, structure — matching the
-  reference's audio map),
-- **sound effects** (whooshes, hits, UI clicks, risers — matching the reference's
-  SFX cues).
+A ready-to-paste prompt for an AI with **audio generation**. Two sections:
+- **music** — mood, genre, BPM, length, instrumentation, energy arc,
+- **sound effects** — whooshes, hits, UI clicks, risers; each timed to a beat.
 
-Each item: what it is, where it lands (the cue time from the beat map), duration,
-and character.
+Deliverable: **`sound-assets.zip`** holding `MANIFEST.md`, `music.zip`, `sfx.zip`.
 
 ### 4.3 The rule about the two files
 - **Two files. Separate. Always.** Never merge them into one prompt.
-- **Visual = images + logos. Sound = music + SFX.** Do not put code or video
-  clips in either — **no video clips, no voiceover** (the A-roll comes from the
-  user; see Stage 5).
-- Each file is **itself a prompt** — copy-paste ready, not a description of a
-  prompt.
+- **Visual = images + transparent + logos. Sound = music + SFX.** Do not put code
+  or video clips in either — **no video clips, no voiceover** (the A-roll comes
+  from the user; see Stage 5).
+- Each file is **itself a prompt** — copy-paste ready, at full depth.
 
 Templates: `templates/ASSETS-VISUAL.template.md`, `templates/ASSETS-SOUND.template.md`.
-Full spec: `references/ASSET-PROMPTS.md`.
+**Worked examples (match these):** `examples/EXAMPLE-ASSETS-VISUAL.md`,
+`examples/EXAMPLE-ASSETS-SOUND.md`. Full spec: `references/ASSET-PROMPTS.md`.
 
 ---
 

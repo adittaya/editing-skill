@@ -38,11 +38,16 @@ reference read at 100% is a build that is right.
 — only after the extraction is done and the contact sheet says which shots need a
 speaker.
 
-## The two asset prompts are always two files
-- **`ASSETS-VISUAL.md`** — images + logos (for an image generator).
-- **`ASSETS-SOUND.md`** — music + sound effects (for an audio generator).
+## The two asset prompts are always two files, at full depth
+- **`ASSETS-VISUAL.md`** — images + transparent images + logos (for an image
+  generator). Returns `visual-assets.zip`.
+- **`ASSETS-SOUND.md`** — music + sound effects (for an audio generator). Returns
+  `sound-assets.zip`.
 
-**Never merged.** No video clips, no voiceover in either.
+**Never merged.** No video clips, no voiceover in either. Each file **is a
+prompt** — executable briefs with exact values (hex, px, durations, BPM, cue
+times), a deliverable tree, and acceptance checks — at the depth of the worked
+examples in `examples/`.
 
 ## Folder structure
 ```
@@ -62,6 +67,9 @@ editing-skill/
     ASSETS-VISUAL.template.md
     ASSETS-SOUND.template.md
     A-ROLL-REQUEST.template.md
+  examples/
+    EXAMPLE-ASSETS-VISUAL.md   <- a complete worked visual-asset prompt
+    EXAMPLE-ASSETS-SOUND.md    <- a complete worked sound prompt
   tools/
     extract.py  analyze.py  contact_sheet.py  qa_check.py
 ```

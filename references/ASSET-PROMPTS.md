@@ -1,101 +1,120 @@
-# ASSET-PROMPTS — the two prompts (visual + sound), separate, always
+# ASSET-PROMPTS — the two prompts (visual + sound), separate, at full depth
 
 This is the deep spec behind **Stage 4 (THE TWO-PROMPT LAW)** in `SKILL.md`.
 
 > ### THE LAW
 > From `ANALYSIS.md`, produce **exactly two** asset prompts, as **two separate
 > files**:
-> 1. `ASSETS-VISUAL.md` — **images + logos** (for an image generator).
+> 1. `ASSETS-VISUAL.md` — **images + transparent images + logos** (for an image
+>    generator).
 > 2. `ASSETS-SOUND.md` — **music + sound effects** (for an audio generator).
 >
 > Nothing else. No video clips. No voiceover. Two files, never merged.
 
-Each file is **itself a prompt** — copy-paste ready into an AI that can generate
-that medium. It is not a description *of* a prompt.
-
 ---
 
-## 1. `ASSETS-VISUAL.md` — the visual-asset prompt
+## 1. Each file IS a prompt — not a spec sheet
 
-Request the **images and logos** the reference needs.
+This is the single most important thing, and the one most easily got wrong.
 
-**What to include:**
-| Category | What | Notes |
-|---|---|---|
-| Backgrounds / plates | full-frame backdrops, textures | aspect = the reference's aspect |
-| Illustrations | icons, spot art, diagrams | match the reference's style |
-| Transparent images | PNG/alpha cut-outs, caption PNGs | mark "transparent background" |
-| Logos | wordmark + mark | in the reference's measured palette |
-| Still elements | any still the reference uses | charts, cards, badges |
+The file is **not** a table for a human to read and then rewrite. It is a
+**self-contained instruction you hand directly to an AI agent** with the right
+generator. Write it so the agent can execute every item and return files — with
+**no further questions**.
 
-**How to write each item:** a one-line spec with
-- **what it is**,
-- **size / aspect**,
-- **palette** (hex sampled in `ANALYSIS.md`),
-- **style keywords** (from the style line, e.g. "cinematic, modern, clean,
-  premium"),
-- **transparent background?** yes/no.
+So each file:
+1. **Opens with the role and the task** — *"You are an AI agent with image
+   generation. Produce every asset below and return ONE zip file."* State that
+   voiceover and video clips are excluded.
+2. **Gives the deliverable tree** — **one zip containing multiple zips inside**,
+   one per category, with `MANIFEST.md` as the only loose file.
+3. **Numbers every asset with its own executable brief** and its output path.
+4. **Closes with acceptance checks.**
 
-**Example item:**
-> `hero-bg-01` — dark-navy radial backdrop with soft blue light streaks.
-> 1920×1080. Palette `#0A1428 / #1E4FD8 / #7FB2FF`. Style: cinematic, modern,
-> clean, premium. Opaque.
-
----
-
-## 2. `ASSETS-SOUND.md` — the sound prompt
-
-Request the **music and sound effects** the reference needs.
-
-**What to include:**
-| Category | What | Notes |
-|---|---|---|
-| Music | bed tracks | mood, BPM, instrumentation, structure |
-| Music | stings / risers | where they land |
-| SFX | whooshes, hits, clicks | the exact cue time from the beat map |
-| SFX | UI / tech sounds | clicks, toggles, data ticks |
-| Ambience | room / crowd / texture | if the reference has it |
-
-**How to write each item:**
-- **what it is**,
-- **where it lands** (cue time from the beat map),
-- **duration**,
-- **character** (warm/cold, soft/hard, rising/falling),
-- for music: **mood, BPM, instrumentation, structure** (intro/build/drop/out).
-
-**Example item:**
-> `sfx-whoosh-01` — a bright rising whoosh. Lands at **00:04.2**, 0.6 s. Cold,
-> fast, sweeping up.
+> **Depth is the point.** A thin list of names is wrong. Every item carries its
+> **exact** values — hex colours, pixel dimensions, durations, BPM, cue times,
+> filenames. The complete worked examples are:
+> - `examples/EXAMPLE-ASSETS-VISUAL.md`
+> - `examples/EXAMPLE-ASSETS-SOUND.md`
 >
-> `music-bed-01` — modern corporate-electronic bed. **96 BPM**, soft synth pads
-> + a light four-on-the-floor, subtle build at 0:30. Matches the reference's
-> −14 LUFS bed.
+> **Match that depth.** If your file is much shorter than the examples, it is
+> under-specified.
 
 ---
 
-## 3. What must NOT be in either file
+## 2. `ASSETS-VISUAL.md` — the visual-asset prompt
 
-- **No video clips.** (The build makes motion from the visual assets + the edit.)
+Covers **three** sections:
+
+| Section | What | The rule |
+|---|---|---|
+| **1. Images** | backgrounds, plates, hero objects, textures, charts | one executable brief each: subject · composition · style · palette (hex) · lighting · aspect + background · negatives |
+| **2. Transparent images** | cut-outs, icons, overlays, badges, caption PNGs | every brief ends **"transparent background, PNG with alpha"** |
+| **3. Logos** | wordmark, mark, badges | if the client supplies an SVG, say so — never reproduce a real brand's mark; otherwise a brief or a `NOTE.md` |
+
+**Deliverable tree:**
+```
+visual-assets.zip
+├── MANIFEST.md
+├── images.zip
+├── transparent.zip
+└── logos.zip
+```
+
+**Rules:** no text baked into any image (generated type is garbled — type is
+rendered in the edit); every transparent item is a true alpha PNG; the palette is
+the **measured hex** from `ANALYSIS.md`.
+
+---
+
+## 3. `ASSETS-SOUND.md` — the sound prompt
+
+Covers **two** sections:
+
+| Section | What | The rule |
+|---|---|---|
+| **1. Music** | bed tracks, stings, risers | one executable brief each: mood · genre · BPM · length · instrumentation · energy arc; master to the reference's LUFS; WAV + MP3 |
+| **2. Sound effects** | whooshes, hits, ticks, risers, pops, UI sounds | one brief per cue, each **timed to a beat** from the analysis; type · character · duration |
+
+**Deliverable tree:**
+```
+sound-assets.zip
+├── MANIFEST.md
+├── music.zip
+└── sfx.zip
+```
+
+**Rules:** every cue time comes from the **beat map** in `ANALYSIS.md`; no
+dialogue; deliver clean stems where possible.
+
+---
+
+## 4. What must NOT be in either file
+
+- **No video clips.** (The build makes motion in the edit.)
 - **No voiceover / A-roll.** (That comes from the user — Stage 5.)
-- **No code components.** (If the reference needs an interactive UI, that is a
-  build-time component, not an asset prompt.)
+- **No code components.** (The two prompts are images/logos and sound only —
+  "that's it, and nothing". Any animated UI the reference needs is built at
+  Stage 6.)
 - **No merging.** Two files, two media, two generators.
 
 ---
 
-## 4. Provenance & honesty
+## 5. Provenance & honesty
 
-- State the palette as **measured hex** (from `ANALYSIS.md`), not invented.
-- Do not name the reference's brand, product or logo text in the prompt — request
-  the **form** ("a wordmark in this palette"), never the source's actual mark.
-- If a cue is inferred, label it **inferred**.
+- Palette = **measured hex** from `ANALYSIS.md`, not invented.
+- Never name the reference's brand/product/logo text — request the **form** ("a
+  wordmark in this palette"), never the source's actual mark.
+- Label any inferred cue as **inferred**.
 
 ---
 
-## 5. Checklist before you send them
+## 6. Checklist before you send them
 
 - [ ] Exactly two files exist: `ASSETS-VISUAL.md`, `ASSETS-SOUND.md`.
-- [ ] Visual covers **images + logos**; sound covers **music + SFX**.
-- [ ] Every item has palette (visual) or cue time (sound).
+- [ ] Each **opens with the role + the task** and **ends with acceptance checks**.
+- [ ] Each carries its **deliverable tree** (one zip, multiple zips inside).
+- [ ] Every asset has an **executable brief** with **exact values**.
+- [ ] Visual covers **images + transparent + logos**; sound covers **music + SFX**.
 - [ ] No video clips, no voiceover, no code.
-- [ ] Both are copy-paste ready.
+- [ ] Depth matches `examples/EXAMPLE-ASSETS-VISUAL.md` / `-SOUND.md`.

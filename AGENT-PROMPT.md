@@ -27,6 +27,8 @@ SKILL.md and the files it points to from:
     https://raw.githubusercontent.com/adittaya/editing-skill/main/references/EXTRACTION-PROTOCOL.md
     https://raw.githubusercontent.com/adittaya/editing-skill/main/references/ASSET-PROMPTS.md
     https://raw.githubusercontent.com/adittaya/editing-skill/main/references/ADVANCED-FEATURE-USE-CASES.md
+    https://raw.githubusercontent.com/adittaya/editing-skill/main/examples/EXAMPLE-ASSETS-VISUAL.md
+    https://raw.githubusercontent.com/adittaya/editing-skill/main/examples/EXAMPLE-ASSETS-SOUND.md
 
 I am giving you ONE reference: the file I just attached (a video, or a contact
 sheet). That is all you get for now. Do not ask me for anything else yet.
@@ -51,12 +53,20 @@ STAGE 3 - write ANALYSIS.md (use templates/ANALYSIS.template.md): summary, beat
   inventory, audio map, the V1/V2/V3 contact sheets, and any open questions.
   Label anything inferred as "inferred".
 
-STAGE 4 - write the TWO asset prompts, as TWO separate files:
-  - ASSETS-VISUAL.md (templates/ASSETS-VISUAL.template.md) - images + logos only,
-    each with palette hex and "transparent background?" where needed.
-  - ASSETS-SOUND.md (templates/ASSETS-SOUND.template.md) - music + sound effects
-    only, each with the cue time from the beat map.
-  Never merge them. No video clips. No voiceover in either.
+STAGE 4 - write the TWO asset prompts, as TWO separate files, EACH AT FULL DEPTH
+  (each file IS a prompt: open with the role + the task, give a deliverable tree
+  of one zip containing multiple zips, give every asset an executable brief with
+  exact values, close with acceptance checks). MATCH THE DEPTH of the worked
+  examples examples/EXAMPLE-ASSETS-VISUAL.md and examples/EXAMPLE-ASSETS-SOUND.md:
+  - ASSETS-VISUAL.md (templates/ASSETS-VISUAL.template.md) - images + transparent
+    images + logos. Returns visual-assets.zip (MANIFEST.md, images.zip,
+    transparent.zip, logos.zip). Every item carries palette hex, size, and
+    "transparent background, PNG with alpha" where needed.
+  - ASSETS-SOUND.md (templates/ASSETS-SOUND.template.md) - music + sound effects.
+    Returns sound-assets.zip (MANIFEST.md, music.zip, sfx.zip). Music carries
+    mood/BPM/length/instrumentation; every SFX carries its cue time from the beat
+    map.
+  Never merge them. No video clips. No voiceover. No code. Two files, that is it.
 
 STAGE 5 - then, and only then, write A-ROLL-REQUEST.md
   (templates/A-ROLL-REQUEST.template.md) and ask me for the A-roll: the voiceover
