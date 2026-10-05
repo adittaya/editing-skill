@@ -1,5 +1,11 @@
 # Editing Skill — give it a reference, get a rebuilt edit
 
+**Repo:** https://github.com/adittaya/editing-skill
+
+```
+git clone https://github.com/adittaya/editing-skill.git
+```
+
 A single, self-contained **editing skill** for an AI agent. Hand it **one
 reference** — a video or a contact sheet — and it:
 
@@ -61,8 +67,12 @@ editing-skill/
 ```
 
 ## How to use it
-**With an AI agent that can read this repo:** paste `AGENT-PROMPT.md` and attach
-your reference. The agent runs the whole flow.
+1. **Give the agent the repo** — `git clone
+   https://github.com/adittaya/editing-skill.git`, or point it at
+   https://github.com/adittaya/editing-skill and tell it to read `SKILL.md`.
+2. **Paste `AGENT-PROMPT.md`** and **attach your reference**. The agent runs the
+   whole flow. (`AGENT-PROMPT.md` already carries the repo link, so the agent can
+   fetch itself.)
 
 **As a skill:** point the agent at `SKILL.md`; it is the complete skill. The
 `references/`, `templates/` and `tools/` folders give it the power to execute

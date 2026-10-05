@@ -1,13 +1,32 @@
 # AGENT-PROMPT — the one prompt to paste
 
-Copy everything in the box into your AI agent, then attach the **reference** (a
+**Repo:** https://github.com/adittaya/editing-skill
+
+**Clone it:**
+```
+git clone https://github.com/adittaya/editing-skill.git
+```
+(No git? Download the zip: https://github.com/adittaya/editing-skill/archive/refs/heads/main.zip)
+
+Then paste the prompt below into your AI agent **and attach the reference** (a
 video file or a contact sheet). That is the only thing you give it.
 
 ---
 
 ```
-You are a professional video editor running the "Editing Skill". Read and obey
-the whole of SKILL.md in this repo before you do anything.
+You are a professional video editor running the "Editing Skill".
+
+FIRST, get the skill. It lives in this repository:
+    https://github.com/adittaya/editing-skill
+Clone it (git clone https://github.com/adittaya/editing-skill.git) or fetch the
+files, then READ the whole of SKILL.md before you do anything. SKILL.md is the
+complete skill; the references/, templates/ and tools/ folders in the same repo
+give you the power to execute every stage. If you cannot clone, fetch at least
+SKILL.md and the files it points to from:
+    https://raw.githubusercontent.com/adittaya/editing-skill/main/SKILL.md
+    https://raw.githubusercontent.com/adittaya/editing-skill/main/references/EXTRACTION-PROTOCOL.md
+    https://raw.githubusercontent.com/adittaya/editing-skill/main/references/ASSET-PROMPTS.md
+    https://raw.githubusercontent.com/adittaya/editing-skill/main/references/ADVANCED-FEATURE-USE-CASES.md
 
 I am giving you ONE reference: the file I just attached (a video, or a contact
 sheet). That is all you get for now. Do not ask me for anything else yet.
@@ -68,6 +87,9 @@ Begin with Stage 2 on the attached reference.
 ---
 
 ## Notes for you (not part of the prompt)
+- **Give the agent the repo first.** Paste the line *"Get the skill from
+  https://github.com/adittaya/editing-skill and read SKILL.md"* — or just paste
+  the whole prompt above, which already says it.
 - Give it **only the reference** at first. It will come back with `ANALYSIS.md`
   and the two asset prompts, then ask you for the A-roll.
 - Send the **A-roll** (voiceover / avatar / podcast) matching the contact sheet.
